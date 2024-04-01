@@ -5,13 +5,15 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
 public class Measurements {
 
     @Id
@@ -23,19 +25,18 @@ public class Measurements {
     @JoinColumn(name = "station_id")
     private Stations stations;
 
-    private String dateTime; // 측정 날짜 및 시간
 
-    private Integer stationCode; // 측정소 코드
+    private LocalDateTime measurementTime; // 측정 날짜 및 시간
 
     private Integer pm10; // 미세 먼지 농도
 
-    private Integer pm2_5; // 초미세 먼지 농도
+    private Integer pm25; // 초미세 먼지 농도
 
-    public Measurements(Stations stations, String dateTime, Integer stationCode, Integer pm10, Integer pm2_5) {
+
+    public Measurements(Stations stations, LocalDateTime measurementTime, Integer pm10, Integer pm25) {
         this.stations = stations;
-        this.dateTime = dateTime;
-        this.stationCode = stationCode;
+        this.measurementTime = measurementTime;
         this.pm10 = pm10;
-        this.pm2_5 = pm2_5;
+        this.pm25 = pm25;
     }
 }

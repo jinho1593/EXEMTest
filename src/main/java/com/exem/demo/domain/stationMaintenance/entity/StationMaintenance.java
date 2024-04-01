@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @NoArgsConstructor
@@ -18,10 +20,10 @@ public class StationMaintenance {
     @JoinColumn(name = "station_id")
     private Stations stations;
 
-    private String Date; // 점검 날짜
+    private LocalDateTime maintenanceDate; // 점검 날짜
 
-    public StationMaintenance(Stations stations, String date) {
+    public StationMaintenance(Stations stations, LocalDateTime maintenanceDate) {
         this.stations = stations;
-        Date = date;
+        this.maintenanceDate = maintenanceDate;
     }
 }

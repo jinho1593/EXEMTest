@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @NoArgsConstructor
@@ -15,7 +17,7 @@ public class Alerts {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long alertId;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "measurement_id")
     private Measurements measurements;
 
@@ -23,10 +25,9 @@ public class Alerts {
 
     private Integer alertGrade;// 경보 등급
 
-    private String issuedTime; // 경보 발령 시간
+    private LocalDateTime issuedTime; // 경보 발령 시간
 
-    public Alerts(Measurements measurements, String alertLevel, Integer alertGrade, String issuedTime) {
-        this.measurements = measurements;
+    public Alerts(String alertLevel, Integer alertGrade, LocalDateTime issuedTime) {
         this.alertLevel = alertLevel;
         this.alertGrade = alertGrade;
         this.issuedTime = issuedTime;
